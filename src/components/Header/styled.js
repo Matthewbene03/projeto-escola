@@ -7,6 +7,7 @@ export const Nav = styled.nav`
   display: flex;
   align-items: center;
   justify-content: center;
+  color: black;
     
   a{
     color: #fff;
