@@ -1,22 +1,20 @@
 import React from "react";
 
-import {Route, Redirect} from "react-router-dom";
+import {Route, Navigate} from "react-router-dom";
 import PropTypes from "prop-types";
 
 function MyRoute({component: Component, isClosed, ...rest}){
-  const userLogin = false;
+  const userLogin = true;
 
   if(isClosed && !userLogin){
     return (
-      <Redirect
+      <Navigate
         to = {{pathname: "/login", state: {prevPath: rest.location.pathname}}}
       />
     );
   }
 
-  return(
-    <Route {...rest} component = {Component}/>
-  );
+  return <Route {...rest} component = {Component}/>
 }
 
 MyRoute.defaultProps = {

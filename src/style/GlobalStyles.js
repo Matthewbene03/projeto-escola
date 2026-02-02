@@ -37,6 +37,11 @@ export default createGlobalStyle`
     padding: 10px 20px;
     border-radius: 5px;
     font-weight: 700;
+    transition: all 300ms;
+  }
+
+  button:hover{
+    filter: brightness(85%);
   }
 
   a{
@@ -47,10 +52,15 @@ export default createGlobalStyle`
   ul{
     list-style: none;
   }
+
+  .FaEdit, .FaDelete{
+    background-color: white;
+    color: black;
+  }
 `;
 
 export const Container = styled.section`
-  max-width: 360px;
+  max-width: 480px;
   background-color: #fff;
   margin: 30px auto;
   padding: 30px;
