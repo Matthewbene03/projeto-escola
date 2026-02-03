@@ -5,8 +5,8 @@ Cada reducer representa um pedaço do estado global.
 
 import {combineReducers} from "redux"
 
-import reducer from "./examples/reducer";
+import auth from "./auth/reducer";
 
 export default combineReducers({
-  myReducer: reducer,
+  auth,
 });
