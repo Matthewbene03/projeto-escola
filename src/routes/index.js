@@ -32,7 +32,8 @@
 // export default Routes;
 
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import Login from "../pages/login";
 import Register from "../pages/register";
@@ -40,17 +41,28 @@ import Alunos from "../pages/alunos";
 import Aluno from "../pages/aluno";
 import Fotos from "../pages/fotos";
 import Page404 from "../pages/Pages404";
+import PrivateRoute from "./PrivateRoute"
 
 export default function AppRoutes() {
+  const isLoggedIn = useSelector(state => state.auth.isLoggedIn)
+
   return (
     <Routes>
       <Route exact path="/" element={<Alunos />} />
       <Route exact path="/login" element={<Login />} />
       <Route exact path="/register" element={<Register />} />
-      <Route exact path="/aluno/:id" element={<Aluno />} />
-      <Route exact path="/aluno/" element={<Aluno />} />
-      <Route exact path="/fotos/:id" element={<Fotos />} />
+      <Route
+        path="/aluno/:id/edit"
+        element={
+          <PrivateRoute isLoggedIn={isLoggedIn}>
+            <Aluno />
+          </PrivateRoute>
+        }
+      />
+      <Route path="/aluno" element={<Aluno />} />
+      <Route path="/fotos/:id" element={<Fotos />} />
       <Route path="*" element={<Page404 />} />
     </Routes>
+
   );
 }
