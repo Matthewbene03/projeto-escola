@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { useNavigate } from "react-router-dom";
 import {isEmail} from "validator"
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
@@ -10,6 +11,7 @@ import * as actions from "../../store/modules/auth/action"
 
 function Login() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -31,6 +33,7 @@ function Login() {
     if(formErrors) return;
 
     dispatch(actions.loginRequest({email, password}))
+    navigate("/")
   }
 
   return (

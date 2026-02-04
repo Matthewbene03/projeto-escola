@@ -13,7 +13,6 @@ function Alunos() {
   React.useEffect(() => { //serve para executar efeitos colaterais em um componente React. Qualquer coisa que não seja apenas renderizar JSX, por exemplo: buscar dados numa API, adicionar event listeners, manipular localStorage, redirecionar página, executar código quando o componente carrega
     async function getData() {
       const response = await Axios.get("/alunos");
-      console.log(response.data);
       setAlunos(response.data);
     }
 
