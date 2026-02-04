@@ -4,7 +4,7 @@ import { get } from "lodash";
 
 import * as action from "./action";
 import * as types from "../types";
-import axios from "../../../services/Axios";
+import axios from "../../../services/axios";
 
 
 function* loginRequest({ payload }) {
