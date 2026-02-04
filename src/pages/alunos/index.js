@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom"
 
 import { Container } from "../../style/GlobalStyles"
 import axios from "../../services/axios";
-import { AlunoContainer, ProfilePicture } from "./styled";
+import { AlunoContainer, ProfilePicture, NovoAluno} from "./styled";
 import { toast } from "react-toastify";
 
 function Alunos() {
@@ -49,6 +49,10 @@ function Alunos() {
   return (
     <Container>
       <h1>Alunos</h1>
+
+      <NovoAluno to={"/aluno"}>Criar novo aluno</NovoAluno>
+
+
       <AlunoContainer>
         {alunos.map((aluno, index) => (
           <div key={aluno.id}>

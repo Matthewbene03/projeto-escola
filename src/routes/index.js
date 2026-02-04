@@ -59,7 +59,14 @@ export default function AppRoutes() {
           </PrivateRoute>
         }
       />
-      <Route path="/aluno" element={<Aluno />} />
+      <Route 
+        path="/aluno" 
+        element={
+          <PrivateRoute isLoggedIn={isLoggedIn}>
+            <Aluno />
+          </PrivateRoute>
+          }
+      />
       <Route path="/fotos/:id" element={<Fotos />} />
       <Route path="*" element={<Page404 />} />
     </Routes>
