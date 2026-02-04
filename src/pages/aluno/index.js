@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { get } from "lodash";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { isEmail, isInt, isFloat } from "validator";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
+import {FaEdit} from "react-icons/fa"
 
 import { Container } from "../../style/GlobalStyles"
-import { Form } from "./styled"
+import { Form, ProfilePicture, IconUserCircle } from "./styled"
 import axios from "../../services/axios";
 import * as action from "../../store/modules/auth/action"
 
@@ -22,6 +23,7 @@ function Aluno() {
   const [idade, setIdade] = useState("");
   const [peso, setPeso] = useState("");
   const [altura, setAltura] = useState("");
+  const [foto, setFoto] = useState("");
 
   React.useEffect(() => {
     if (!id) return;
@@ -29,8 +31,8 @@ function Aluno() {
     async function getData() {
       try {
         const { data } = await axios.get(`/alunos/${id}`);
-        //const Foto = get(data, "Fotos[0].url", "");
-
+        const Foto = get(data, "Fotos[0].url", "");
+        setFoto(Foto)
         setNome(data.nome);
         setSobrenome(data.sobrenome);
         setEmail(data.email);
@@ -109,6 +111,19 @@ function Aluno() {
   return (
     <Container>
       <h1>{id ? ("Editar Aluno") : ("Novo Aluno")}</h1>
+
+      {id && (
+        <ProfilePicture>
+          {foto ? (
+            <img src={foto} alt={nome}/>
+          ) : (
+            <IconUserCircle size={180}/>
+          )}
+          <Link to={`/fotos/${id}`}>
+            <FaEdit size={24}></FaEdit>
+          </Link>
+        </ProfilePicture>
+      )}
 
       <Form onSubmit={handleSubmit}>
         <label htmlFor="nome">
